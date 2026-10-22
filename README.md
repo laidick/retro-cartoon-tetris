@@ -5,6 +5,9 @@ NES-style chiptune audio. Everything is generated at runtime: the graphics are
 drawn procedurally and the music/SFX are synthesized into WAV buffers at
 startup, so there are no external audio files to ship.
 
+> **Demonstration:** this game was built with **DeepSeek Harness + DeepSeek
+> 4.1 Flash** from a single one-shot prompt.
+
 ![Gameplay](docs/screenshot.png)
 
 ## What it is
