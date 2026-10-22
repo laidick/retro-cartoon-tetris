@@ -593,21 +593,6 @@ async fn run_shot(app: &mut App, path: &str, screen: &str) {
 
     next_frame().await;
     draw_frame(app);
-    let mut image = get_screen_data();
-    flip_vertical(&mut image);
+    let image = get_screen_data();
     image.export_png(path);
-}
-
-/// `get_screen_data` reads the framebuffer bottom-up, so exported shots need a
-/// vertical flip to match what is on screen.
-fn flip_vertical(image: &mut Image) {
-    let row = image.width as usize * 4;
-    let height = image.height as usize;
-    for y in 0..height / 2 {
-        let top = y * row;
-        let bottom = (height - 1 - y) * row;
-        for i in 0..row {
-            image.bytes.swap(top + i, bottom + i);
-        }
-    }
 }

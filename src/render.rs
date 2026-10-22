@@ -1230,13 +1230,18 @@ fn draw_header(assets: &Assets, music_on: bool, high_score: u64) {
 // Screens
 // ---------------------------------------------------------------------------
 
-pub fn begin_shake(shake: Vec2) {
-    let camera = Camera2D {
+/// Screen-space camera used for shake. Positive zoom on both axes matches
+/// macroquad's top-left/y-down convention; a negative y zoom mirrors the scene.
+pub fn screen_camera(shake: Vec2) -> Camera2D {
+    Camera2D {
         target: vec2(WINDOW_W / 2.0 + shake.x, WINDOW_H / 2.0 + shake.y),
-        zoom: vec2(2.0 / WINDOW_W, -2.0 / WINDOW_H),
+        zoom: vec2(2.0 / WINDOW_W, 2.0 / WINDOW_H),
         ..Default::default()
-    };
-    set_camera(&camera);
+    }
+}
+
+pub fn begin_shake(shake: Vec2) {
+    set_camera(&screen_camera(shake));
 }
 
 pub fn end_shake() {
@@ -1520,4 +1525,20 @@ fn draw_game_over_overlay(scene: &Scene) {
         &scene.assets.font,
         1.0,
     );
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn shake_camera_keeps_screen_orientation() {
+        let camera = screen_camera(vec2(4.0, -3.0));
+        assert!(camera.zoom.x > 0.0, "x zoom must not mirror the scene");
+        assert!(camera.zoom.y > 0.0, "y zoom must not flip the scene");
+        assert_eq!(
+            camera.target,
+            vec2(WINDOW_W / 2.0 + 4.0, WINDOW_H / 2.0 - 3.0)
+        );
+    }
 }
