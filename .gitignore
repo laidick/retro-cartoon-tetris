@@ -1,3 +1,4 @@
 /target
+/.cargo-home
 /highscore.txt
 .DS_Store

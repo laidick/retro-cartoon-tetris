@@ -2,7 +2,12 @@
 name = "tetris-rust"
 version = "0.1.0"
 edition = "2021"
-description = "Retro cartoon Tetris in Rust with chiptune audio"
+description = "Retro cartoon Tetris in Rust with synthesized NES-style chiptune audio"
+license = "MIT"
+repository = "https://github.com/laidick/retro-cartoon-tetris"
+readme = "README.md"
+keywords = ["tetris", "game", "macroquad", "chiptune", "retro"]
+categories = ["games"]
 
 [dependencies]
 macroquad = { version = "0.4.16", features = ["audio"] }

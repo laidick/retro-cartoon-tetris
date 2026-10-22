@@ -90,6 +90,12 @@ randomised 4000-step play simulation, plus WAV header/audio sanity checks.
 - `src/render.rs` — cartoon renderer, mascot, particles, menus/overlays.
 - `src/main.rs` — window, input/DAS, state machine, audio triggers, screenshots.
 
+## License
+
+The code and procedurally generated artwork are MIT licensed (`LICENSE`).
+The bundled Lilita One font is licensed under the SIL Open Font License 1.1
+(`assets/OFL.txt`). Korobeiniki is a public-domain folk song.
+
 ## Credits
 
 - Korobeiniki: traditional Russian folk song, public domain.
